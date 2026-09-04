@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StrengthHost | Мощный хостинг серверов Майнкрафт</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ВЕРХУШКА ХОСТИНГА -->
+    <header class="navbar">
+        <div class="logo">STRENGTH<span>HOST</span></div>
+        <nav class="nav-links">
+            <a href="#main">Главная</a>
+            <a href="#tariffs">Тарифы и Цены</a>
+            <!-- КНОПКА ДЛЯ ВХОДА В АККАУНТЫ -->
+            <button class="btn-account" onclick="openLoginModal()">👤 Аккаунты</button>
+        </nav>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН РЕКЛАМЫ -->
+    <section id="main" class="hero-section">
+        <div class="hero-container">
+            <div class="server-badge">⚡ МОЩНЕЙШИЕ РЕШЕНИЯ НА RYZEN, FX И RTX</div>
+            <h1>Запусти свой сервер Майнкрафт <span class="green-text">без лагов</span></h1>
+            <p class="hero-subtitle">Хватит терпеть очереди Атерноса. Переходи на профессиональное железо с высоким FPS и правильным IP-адресом!</p>
+            <div class="cta-buttons">
+                <a href="#tariffs" class="btn-main">Создать сервер бесплатно</a>
+                <button class="btn-secondary" onclick="openLoginModal()">Панель Владельца</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- СЕКРЕТНОЕ ОКНО АВТОРИЗАЦИИ (МОДАЛЬНОЕ ОКНО) -->
+    <div id="login-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+            <h2>🔐 ВХОД В СИСТЕМУ ХОСТИНГА</h2>
+            <p style="color: #8b949e; font-size: 13px; margin-bottom: 20px;">Доступ только для создателей Стренжа</p>
+            <div class="modal-form">
+                <input type="text" id="admin-login" placeholder="Введите ваш ник (ErickRoss / _Fatal1ty_)...">
+                <input type="password" id="admin-pass" placeholder="Введите ваш секретный пароль...">
+                <button class="buy-btn" onclick="checkAdminLogin()">Войти в панель</button>
+            </div>
+            
+            <!-- Сюда выведутся космические характеристики тарифа Strength Smp после ввода пароля -->
+            <div id="secret-panel" class="ip-result-box" style="display: none; margin-top: 20px; border-color: #ffd700;">
+                <h3 style="color: #ffd700;">👑 ДОСТУП ОДОБРЕН!</h3>
+                <div class="warning-text" id="secret-info"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ТАРИФЫ ДЛЯ РЕКЛАМЫ -->
+    <section id="tariffs" class="tariffs-section">
+        <h2>🛍️ НАШИ ТАРИФНЫЕ ПЛАНЫ</h2>
+        <p class="section-desc">Выберите подходящую мощность, чтобы память и ресурсы никогда не закончились!</p>
+        
+        <div class="donate-grid">
+            
+            <!-- ТАРИФ 1: ЗОМБИ (БЕСПЛАТНЫЙ) -->
+            <div class="donate-card zombie">
+                <div class="card-badge" style="background: #4ade80; color: #0d1117;">🧟 ДОСТУПЕН ВСЕМ</div>
+                <h3>Тариф "Зомби"</h3>
+                <div class="price">0 <span>руб. / вечно</span></div>
+                <ul class="features">
+                    <li>🔥 Процессор: <strong>AMD FX-9590</strong> (До 5 ГГц)</li>
+                    <li>⚡ Высокий FPS: <strong>До 700 ФПС</strong> у всех игроков!</li>
+                    <li>💾 Оперативная память: <strong>4 ГБ RAM</strong></li>
+                    <li>📦 Память диска: <strong>10 ГБ NVMe SSD</strong></li>
+                    <li>🚫 <strong>Без очередей</strong> и задержек Атерноса</li>
+                </ul>
+                <button class="buy-btn" style="background: #4ade80; color: #0d1117;">Запустить бесплатно</button>
+            </div>
+
+            <!-- ТАРИФ 2: СКЕЛЕТ -->
+            <div class="donate-card skeleton-tariff">
+                <div class="card-badge" style="background: #a8a29e; color: #0d1117;">💀 БОЛЬШЕ МЕСТА</div>
+                <h3>Тариф "Скелет"</h3>
+                <div class="price">49 <span>руб. / мес</span></div>
+                <ul class="features">
+                    <li>🔥 Процессор: <strong>AMD FX-9590</strong> (До 5 ГГц)</li>
+                    <li>⚡ Высокий FPS: <strong>До 700 ФПС</strong> для ПВП!</li>
+                    <li>💾 Оперативная память: <strong>4 ГБ RAM</strong></li>
+                    <li>📦 Память диска: <strong>40 ГБ NVMe SSD</strong> (Для карт)</li>
+                    <li>🚫 Стабильный запуск без очередей 24/7</li>
+                </ul>
+                <button class="buy-btn" style="background: #a8a29e; color: #0d1117;">Арендовать за 49 руб</button>
+            </div>
+
+            <!-- ТАРИФ 3: ЛЕТУЧАЯ МЫШЬ -->
+            <div class="donate-card budget">
+                <div class="card-badge" style="background: #8b949e; color: #0d1117;">🦇 НАРОДНЫЙ ВЫБОР</div>
+                <h3>Тариф "Летучая Мышь"</h3>
+                <div class="price">76 <span>руб. / мес</span></div>
+                <ul class="features">
+                    <li>🟢 Моментальный запуск за 1 секунду</li>
+                    <li>⚡ Стабильные 20 TPS под ПВП-замесы</li>
+                    <li>💾 Оперативная память: <strong>6 ГБ RAM</strong></li>
+                    <li>📦 Выделенный диск: <strong>20 ГБ NVMe SSD</strong></li>
+                    <li>🌐 Правильный IP-адрес для лаунчера</li>
+                </ul>
+                <button class="buy-btn" style="background: #8b949e; color: #0d1117;">Арендовать за 76 руб</button>
+            </div>
+
+            <!-- ТАРИФ 4: ЖЕЛЕЗНЫЙ ГОЛЕМ -->
+            <div class="donate-card golem">
+                <div class="card-badge" style="background: #e2e8f0; color: #0d1117;">🛡️ ЖЕСТКАЯ ЗАЩИТА</div>
+                <h3>Тариф "Железный Голем"</h3>
+                <div class="price">5 000 <span>руб. / мес</span></div>
+                <ul class="features">
+                    <li>🔥 Процессор: <strong>AMD Ryzen 3065</strong></li>
+                    <li>💾 Оперативная память: <strong>16 ГБ RAM</strong></li>
+                    <li>📦 Память диска: <strong>100 ГБ NVMe SSD</strong></li>
+                    <li>⚡ Полная защита от ТНТ-крашей и лаг-машин</li>
+                    <li>🌐 Выделенный правильный порт</li>
+                </ul>
+                <button class="buy-btn" style="background: #e2e8f0; color: #0d1117;">Арендовать за 5000 руб</button>
+            </div>
+
+            <!-- ТАРИФ 5: ВАРДЕН -->
+            <div class="donate-card warden">
+                <div class="card-badge" style="background: #06b6d4; color: #ffffff;">👁️ ПОДЗЕМНЫЙ МОНСТР</div>
+                <h3>Тариф "Варден"</h3>
+                <div class="price">7 000 <span>руб. / мес</span></div>
+                <ul class="features">
+                    <li>🎮 Видеокарта: <strong>NVIDIA RTX 4065</strong> (3D Графика)</li>
+                    <li>💾 Оперативная память: <strong>24 ГБ RAM</strong></li>
+                    <li>📦 Память диска: <strong>777 ГБ NVMe SSD</strong></li>
+                    <li>⚡ Сверхнизкий пинг и моментальный отклик</li>
+                    <li>🟢 Полный доступ к админ-консоли сервера</li>
+                </ul>
+                <button class="buy-btn" style="background: #06b6d4; color: #ffffff;">Арендовать за 7000 руб</button>
+            </div>
+
+            <!-- ТАРИФ 6: ЭНДЕР ДРАКОН -->
+            <div class="donate-card premium">
+                <div class="card-badge">👑 МАКСИМАЛЬНАЯ МОЩЬ</div>
+                <h3>Тариф "Эндер Дракон"</h3>
+                <div class="price">9 000 <span>руб. / мес</span></div>
+                <ul class="features">
+                    <li>🔥 Процессор: <strong>AMD Ryzen 5065</strong> (Топовое серверное ядро)</li>
+                    <li>💾 Оперативная память: <strong>32 ГБ RAM</strong> (Держит онлайн)</li>
+                    <li>📦 Дисковое пространство: <strong>10 ТЕРАБАЙТ (10 ТБ)</strong></li>
+                    <li>🟢 Личный выделенный домен без подписок</li>
+                    <li>🛡️ Круглосуточный хостинг 24/7 без отключений</li>
+                </ul>
+                <button class="buy-btn">Арендовать за 9000 руб</button>
+            </div>
+
+            <!-- ТАРИФ 7: ГЕЙМЕР -->
+            <div class="donate-card gamer-tariff">
+                <div class="card-badge" style="background: #a855f7; color: #ffffff;">🔮 КИБЕРСПОРТИВНЫЙ ТИТАН</div>
+                <h3>Тариф "Геймер"</h3>
+                <div class="price">15 676 <span>руб. / мес</span></div>
+                <ul class="features">
+                    <li>🔥 Процессор: <strong>AMD Ryzen 5065</strong> (Разгон)</li>
+                    <li>⚡ Космическая плавность: <strong>СТАБИЛЬНЫЕ 7777 FPS!</strong></li>
+                    <li>💾 Оперативная память: <strong>32 ГБ RAM</strong> (Ultra Скорость)</li>
+                    <li>📦 Дисковое пространство: <strong>200 ТЕРАБАЙТ (200 ТБ) NVMe</strong></li>
+                    <li>🛡️ Полный безлимит на плагины и кастомные сборки серверов</li>
+                </ul>
+                <button class="buy-btn" style="background: #a855f7; color: #ffffff;">Арендовать за 15676 руб</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- СКРИПТЫ УПРАВЛЕНИЯ И АВТОРИЗАЦИИ -->
+    <script>
+        function openLoginModal() {
+            document.getElementById('login-modal').style.display = "flex";
+            document.getElementById('secret-panel').style.display = "none";
+        }
+
+        function closeLoginModal() {
+            document.getElementById('login-modal').style.display = "none";
+        }
+
+        function checkAdminLogin() {
+            let login = document.getElementById('admin-login').value.trim();
+            let pass = document.getElementById('admin-pass').value.trim();
+            
+            let secretPanel = document.getElementById('secret-panel');
+            let secretInfo = document.getElementById('secret-info');
+
+            // 1. ПРОВЕРКА ДЛЯ ТЕБЯ (ErickRoss / CyberTime)        function checkAdminLogin() {
+            let login = document.getElementById('admin-login').value.trim();
+            let pass = document.getElementById('admin-pass').value.trim();
+            
+            let secretPanel = document.getElementById('secret-panel');
+            let secretInfo = document.getElementById('secret-info');
+
+            // 1. ПРОВЕРКА ДЛЯ ТЕБЯ (ErickRoss / CyberTime)
+            if (login === 'ErickRoss' && pass === 'easyhout') {
+                secretPanel.style.display = "block";
+                secretInfo.innerHTML = 
+                    "👑 <strong>АКТИВИРОВАН СКРЫТЫЙ СВЕРХМОЩНЫЙ ТАРИФ [Strength Smp]</strong><br>" +
+                    "🔒 Владелец хоста: <strong>ErickRoss (CyberTime)</strong> успешно вошел!<br>" +
+                    "🔥 Процессор: <strong>AMD Ryzen 9 9950X3D</strong> (Самый мощный в мире)<br>" +
+                    "💾 Память диска: <strong>2 000 ТЕРАБАЙТ (2к ТБ)</strong> — Лимиты отключены!<br>" +
+                    "⚡ Оптимизация: <strong>АВТО-БУСТ ДО 5000 FPS</strong> (Полная защита от ТНТ!)<br>" +
+                    "🚀 Личный выделенный IP: owner.strengthsmpru.ru";
+                
+                alert("Приветствуем, Создатель CyberTime! Скрытый тариф Strength Smp запущен.");
+                return;
+            }
+
+            // 2. ПРОВЕРКА ДЛЯ ТВОЕГО ДРУГА (_Fatal1ty_)
+            if (login === '_Fatal1ty_' && pass === 'SOFT+NURBEK_LOXI') {
+                secretPanel.style.display = "block";
+                secretInfo.innerHTML = 
+                    "⚔️ <strong>АКТИВИРОВАНА ПАНЕЛЬ СО-АДМИНИСТРАТОРА ХОСТИНГА</strong><br>" +
+                    "🔒 Доступ одобрен для: <strong>_Fatal1ty_</strong> (Главный Соратник)<br>" +
+                    "🔥 Выделенный сервер на процессоре Ryzen для тестов и ПВП-разработок.<br>" +
+                    "📦 Доступ к консоли управления игроками и логам Атерноса открыт!<br>" +
+                    "🚀 Рабочий IP со-админа: fatal1ty.strengthhost.ru";
+                
+                alert("Доступ для со-админа _Fatal1ty_ успешно одобрен! Добро пожаловать.");
+                return;
+            }
+
+            // ЕСЛИ ДАННЫЕ НЕВЕРНЫЕ (Защита от нубасов)
+            alert("❌ ОШИБКА ДОСТУПА! Неверный ник или секретный пароль. Система защиты Калинковичского дата-центра заблокировала попытку входа!");
+        }
+
